@@ -22,7 +22,7 @@ spec:
       terminationGracePeriodSeconds: 10
       initContainers:
       - name: init-config
-        image: solsson/kafka-initutils@sha256:18bf01c2c756b550103a99b3c14f741acccea106072cd37155c6d24be4edd6e2
+        image: oguzdag/kafka-init
         command: ['/bin/bash', '/etc/kafka-configmap/init.sh']
         volumeMounts:
         - name: configmap
@@ -33,7 +33,7 @@ spec:
           mountPath: /var/lib/zookeeper/data
       containers:
       - name: zookeeper
-        image: solsson/kafka:1.0.1@sha256:1a4689d49d6274ac59b9b740f51b0408e1c90a9b66d16ad114ee9f7193bab111
+        image: oguzdag/kafka
         env:
         - name: KAFKA_LOG4J_OPTS
           value: -Dlog4j.configuration=file:/etc/kafka/log4j.properties
@@ -102,7 +102,7 @@ spec:
       terminationGracePeriodSeconds: 10
       initContainers:
       - name: init-config
-        image: solsson/kafka-initutils@sha256:18bf01c2c756b550103a99b3c14f741acccea106072cd37155c6d24be4edd6e2
+        image: oguzdag/kafka-init
         command: ['/bin/bash', '/etc/kafka-configmap/init.sh']
         env:
         - name: ID_OFFSET
@@ -116,7 +116,7 @@ spec:
           mountPath: /var/lib/zookeeper/data
       containers:
       - name: zookeeper
-        image: solsson/kafka:1.0.1@sha256:1a4689d49d6274ac59b9b740f51b0408e1c90a9b66d16ad114ee9f7193bab111
+        image: oguzdag/kafka
         env:
         - name: KAFKA_LOG4J_OPTS
           value: -Dlog4j.configuration=file:/etc/kafka/log4j.properties
