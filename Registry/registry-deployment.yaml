@@ -40,7 +40,9 @@ spec:
   selector:
     app: registry
     tier: registry
-  type: LoadBalancer
+# If you want to access Registry UI from outside of cluster
+# Just change type to LoadBalancer    
+  type: NodePort
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
