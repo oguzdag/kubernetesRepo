@@ -30,10 +30,10 @@ spec:
         - containerPort: 49112 # JMX port number.
         - containerPort: 8080  # REST port number.
         - containerPort: 10800 # SQL port number.
-      volumeMounts:
-      - name: config-volume
-        mountPath: /data/ignite     
-  volumes:
-    - name: config-volume
-      configMap:
-        name: ignite-config      
+        volumeMounts:
+        - name: config-volume
+          mountPath: /data/ignite     
+      volumes:
+        - name: config-volume
+          configMap:
+            name: ignite-config      
