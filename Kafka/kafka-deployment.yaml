@@ -29,7 +29,7 @@ metadata:
   name: kafka
 spec:
   serviceName: kafka-hs
-  replicas: 5
+  replicas: 3
   podManagementPolicy: Parallel
   updateStrategy:
       type: RollingUpdate
