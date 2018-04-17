@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: env-integration
+  name: ENV_NAMESPACE_TO_REPLACE
 ---
 apiVersion: v1
 data:
@@ -53,19 +53,19 @@ data:
 kind: ConfigMap
 metadata:
   name: ignite-config
-  namespace: env-integration
+  namespace: ENV_NAMESPACE_TO_REPLACE
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: ignite
-  namespace: env-integration
+  namespace: ENV_NAMESPACE_TO_REPLACE
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: igniteRoleBinding
-  namespace: env-integration
+  namespace: ENV_NAMESPACE_TO_REPLACE
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -73,13 +73,13 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: ignite
-  namespace: env-integration
+  namespace: ENV_NAMESPACE_TO_REPLACE
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: ignite
-  namespace: env-integration  
+  namespace: ENV_NAMESPACE_TO_REPLACE  
 spec:
   clusterIP: None
   ports:
@@ -91,7 +91,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: ignite-cluster
-  namespace: env-integration
+  namespace: ENV_NAMESPACE_TO_REPLACE
   labels: 
     app: ignite
 spec:
@@ -132,7 +132,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: zk-hs
-  namespace: env-integration
+  namespace: ENV_NAMESPACE_TO_REPLACE
   labels:
     app: zk
 spec:
@@ -149,7 +149,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: zk-cs
-  namespace: env-integration
+  namespace: ENV_NAMESPACE_TO_REPLACE
   labels:
     app: zk
 spec:
@@ -163,7 +163,7 @@ apiVersion: apps/v1beta1
 kind: StatefulSet
 metadata:
   name: zk
-  namespace: env-integration
+  namespace: ENV_NAMESPACE_TO_REPLACE
 spec:
   serviceName: zk-hs
   replicas: 1
@@ -256,7 +256,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: kafka-hs
-  namespace: env-integration
+  namespace: ENV_NAMESPACE_TO_REPLACE
   labels:
     app: kafka
 spec:
@@ -271,7 +271,7 @@ apiVersion: policy/v1beta1
 kind: PodDisruptionBudget
 metadata:
   name: kafka-pdb
-  namespace: env-integration
+  namespace: ENV_NAMESPACE_TO_REPLACE
 spec:
   selector:
     matchLabels:
@@ -282,7 +282,7 @@ apiVersion: apps/v1beta1
 kind: StatefulSet
 metadata:
   name: kafka
-  namespace: env-integration
+  namespace: ENV_NAMESPACE_TO_REPLACE
 spec:
   serviceName: kafka-hs
   replicas: 1
@@ -332,7 +332,7 @@ spec:
         - -c
         - "exec kafka-server-start.sh /opt/kafka/config/server.properties --override broker.id=${HOSTNAME##*-} \
           --override listeners=PLAINTEXT://:9093 \
-          --override zookeeper.connect=zk-cs.env-integration.svc.cluster.local:2181 \
+          --override zookeeper.connect=zk-cs.ENV_NAMESPACE_TO_REPLACE.svc.cluster.local:2181 \
           --override log.dir=/var/lib/kafka \
           --override auto.create.topics.enable=true \
           --override auto.leader.rebalance.enable=true \
