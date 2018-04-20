@@ -18,6 +18,10 @@ spec:
       hostPID: true
       hostIPC: true
       hostNetwork: true
+      # tolerations added for running daemon on master node
+      tolerations:
+      - effect: NoSchedule
+        operator: Exists      
       containers:
         - resources:
             requests:

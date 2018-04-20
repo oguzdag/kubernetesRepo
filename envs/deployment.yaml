@@ -2,6 +2,8 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: ENV_NAMESPACE_TO_REPLACE
+  labels:
+    name: ENV_NAMESPACE_TO_REPLACE
 ---
 apiVersion: v1
 data:
