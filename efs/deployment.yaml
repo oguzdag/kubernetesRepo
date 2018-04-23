@@ -32,9 +32,9 @@ spec:
                   key: provisioner.name
           volumeMounts:
             - name: pv-volume
-              mountPath: /persistentvolumes
+              mountPath: /espcik8svolumes
       volumes:
         - name: pv-volume
           nfs:
             server: fs-d435979c.efs.us-east-1.amazonaws.com
-            path: /espcik8svolumes
+            path: /
