@@ -3,6 +3,6 @@ kind: ConfigMap
 metadata:
   name: efs-provisioner
 data:
-  file.system.id: fs-fb3b99b3
+  file.system.id: fs-02389a4a
   aws.region: us-east-1
   provisioner.name: umusic.com/aws-efs
