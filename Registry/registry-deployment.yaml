@@ -7,7 +7,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 4Gi
+      storage: 20Gi
 ---
 apiVersion: v1
 kind: Service
@@ -26,7 +26,7 @@ spec:
     tier: registry
 # If you want to push images from outside of cluster
 # Just change type to LoadBalancer      
-  type: NodePort
+  type: LoadBalancer
 ---
 apiVersion: v1
 kind: Service
@@ -44,7 +44,7 @@ spec:
     tier: registry
 # If you want to access Registry UI from outside of cluster
 # Just change type to LoadBalancer    
-  type: NodePort
+  type: LoadBalancer
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
