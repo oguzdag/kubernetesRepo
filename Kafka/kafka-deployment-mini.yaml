@@ -1,0 +1,41 @@
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: kafka
+  namespace: default
+  labels:
+    app: kafka
+spec:
+  serviceName: kafka
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: kafka
+    spec:
+      containers:
+      - env:
+        - name: KAFKA_ADVERTISED_HOST_NAME
+          value: kafka
+        - name: KAFKA_AUTO_CREATE_TOPICS_ENABLE
+          value: "true"
+        - name: KAFKA_BROKER_ID
+          value: "1"
+        - name: KAFKA_CREATE_TOPICS
+          value: event:1:1
+        - name: KAFKA_MESSAGE_MAX_BYTES
+          value: "20000000"
+        - name: KAFKA_ZOOKEEPER_CONNECT
+          value: zookeeper:2181/kafka
+        volumeMounts:
+        - name: datadir
+          mountPath: /kafka          
+        image: wurstmeister/kafka:1.1.0
+        ports:
+        - containerPort: 9092
+          name: server
+        name: kafka
+      restartPolicy: Always
+      volumes:
+      - name: datadir
+        emptyDir: {}
